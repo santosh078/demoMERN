@@ -22,7 +22,7 @@ const Signup = () => {
                 "Content-Type":"applicaton/json"
             },
             body:JSON.stringify({
-                name, email, city, country, password, contact
+                name, emailId:email, city, country, password, contact
             })
         });
         const data= await res.json();
