@@ -15,21 +15,28 @@ const Signup = () => {
     };
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-        const {name, email, city, country, password, contact} = user;
-        const res = await fetch("/register",{
-            method:"POST",
-            headers:{
-                "Content-Type":"applicaton/json"
+        const { name, email, city, country, password, contact } = user;
+        const res = await fetch("/register", {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json; charset=utf-8",
+                'Connection':"keep-alive"
             },
-            body:JSON.stringify({
-                name, emailId:email, city, country, password, contact
+            body: JSON.stringify({
+                "name": name,
+                "emailId": email,
+                "city": city,
+                "country": country,
+                "password": password,
+                "contact": Number(contact)
+                /// name, emailId:email, city, country, password, contact
             })
         });
-        const data= await res.json();
+        const data = await res.json();
         console.log(data);
-        if(data.status === 422 || !data){
+        if (!data.status) {
             window.alert("registration failed");
-        }else{
+        } else {
             window.alert("registration success");
         }
 
