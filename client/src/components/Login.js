@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/style.css';
 
 // class Login extends Component {
 const Login = () => {
+    const history=useNavigate();
     const [userLogin, setUserLogin] = useState({
         email: "", password: ""
     });
@@ -24,14 +26,14 @@ const Login = () => {
                 'Content-Type': "application/json; charset=utf-8",
                 'Connection': "keep-alive"
             },
-
             body: JSON.stringify({ email, password })
         });
         const data = await res.json();
         if(!data.status){
-            window.alert("Invalid credentials");
+            window.alert("Invalid credentials");            
         }else{
             window.alert("Login success");
+            history("/");
         }
         console.log(JSON.stringify(data));
     }
@@ -95,7 +97,7 @@ const Login = () => {
                                 <div class="text-center text-lg-start mt-4 pt-2">
                                     <button type="button" class="btn btn-primary btn-lg loginButton" onClick={handleLogin}
                                     >Login</button>
-                                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
+                                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/register"
                                         class="link-danger">Register</a></p>
                                 </div>
 
@@ -103,31 +105,7 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-                <div
-                    class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-
-                    <div class="text-white mb-3 mb-md-0">
-                        Copyright © 2022. All rights reserved.
-                    </div>
-
-
-                    {/* 
-                        <div>
-                            <a href="#!" class="text-white me-4">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#!" class="text-white me-4">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#!" class="text-white me-4">
-                                <i class="fab fa-google"></i>
-                            </a>
-                            <a href="#!" class="text-white">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </div> */}
-
-                </div>
+               
             </section>
         </>
     );

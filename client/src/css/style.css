@@ -24,8 +24,70 @@ height: 80%;
 }
 
 .sectionRegister{
-    ackground-color: #eee;
+    background-color: #eee;
 }
 .cardBorder{
     border-radius: 25px;
+}
+.aboutUsMainSection{
+    background-color: #eee;
+}
+.imgWidth{
+    width: 150px;
+}
+.color333{
+    color:#333333
+}
+.color55{
+    color:#55acee
+}
+.colorac2{
+    color:#ac2bac
+}
+.color3b5{
+    color:#3b5998
+}
+.bodyPadding{
+    padding-bottom: 4rem;
+}
+
+/* contact us css */
+
+.contact{
+    padding: 4%;
+    height: 400px;
+}
+.col-md-3{
+    background: #ff9b00;
+    padding: 4%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+.contact-info{
+    margin-top:10%;
+}
+.contact-info img{
+    margin-bottom: 15%;
+}
+.contact-info h2{
+    margin-bottom: 10%;
+}
+.col-md-9{
+    background: #fff;
+    padding: 3%;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+.contact-form label{
+    font-weight:600;
+}
+.contact-form button{
+    background: #25274d;
+    color: #fff;
+    font-weight: 600;
+    width: 25%;
+    margin-top: 1rem;
+}
+.contact-form button:focus{
+    box-shadow:none;
 }

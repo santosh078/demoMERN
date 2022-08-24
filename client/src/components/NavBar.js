@@ -6,8 +6,8 @@ import '../css/style.css'
 class NavBar extends Component {
     render() {
         return (
-            <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light ms-auto">
+            <div className ="bodyPadding">
+                <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light ms-auto d-flex">
                     <div className="container-fluid">
                         <NavLink className="navbar-brand" to="#">
                         <img src={logo} alt={logo} sizes='#navbarSupportedContent' className='img-sizing'></img>
@@ -23,9 +23,9 @@ class NavBar extends Component {
                                 <li className="nav-item">
                                     <NavLink className="nav-link"  to="/">Home</NavLink>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <NavLink className="nav-link"  to="/signup">Registration</NavLink>
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/login">Login</NavLink>
                                 </li>

@@ -2,20 +2,25 @@ const express = require("express");
 const router = express.Router();
 const bcrypt= require("bcrypt");
 const jwt= require("jsonwebtoken");
-const middleware = (req, res, next) => {
-   console.log(`inside middleware`);
-   next();
-}
+const cookieParser =require("cookie-parser");
+router.use(cookieParser()) 
+const authentication= require("../middleware/authentication");
 require("../db/connection");
 const User = require("../models/userSchema");
 router.get("/", (req, res) => {
    res.send("welcome to home page");
 });
-router.get("/about", middleware, (req, res) => {
+router.get("/about", authentication, (req, res) => {
    // res.cookie("test","test",{
    //    httpOnly:true
    // });
-   res.send("welcome to about page");
+   // console.log("in about ::"+req);
+   if(req.rootUser){
+      res.status(201).json(req.rootUser);
+   }else{
+      res.status(401).json({error:"Not authorised"});
+   }
+  
 
 });
 // using promise
@@ -43,13 +48,16 @@ router.get("/about", middleware, (req, res) => {
 
 // using async and await
 router.post("/register",async (req, res) => {
-   const { name, emailId, city, country, contact, password } = req.body;
+   const { name, emailId, city, country, contact, password, cpassword } = req.body;
    // console.log(`req body is ${JSON.stringify(req)}`);
    // console.log(req);
-   console.log(`name is ${name} ----emailId is ${emailId} ----city is ${city} ----country is ${country} ----contact is ${contact} ---- password is ${password}`);
-   if (!name || !emailId || !city || !country || !contact || !password) {
+   //console.log(`name is ${name} ----emailId is ${emailId} ----city is ${city} ----country is ${country} ----contact is ${contact} ---- password is ${password}`);
+   if (!name || !emailId || !city || !country || !contact || !password || !cpassword) {
      
       return res.status(422).json({ error: "Enter all the fields" });
+   }
+   if(cpassword !== password ){
+      return res.status(422).json({ error: "Passwords doesn't match" });
    }
    try {
       const userExist = await User.findOne({ emailId: emailId });
@@ -57,7 +65,7 @@ router.post("/register",async (req, res) => {
       if (userExist) {
          return res.status(422).json({ status:false,error: "User already exists" });
       }
-      const user = new User({ name, emailId, city, country, contact, password });
+      const user = new User({ name, emailId, city, country, contact, password, cpassword});
       //hashing of password
       const userRegister = await user.save();
       // console.log(` save response:::${userRegister}`);
@@ -75,7 +83,7 @@ router.post("/register",async (req, res) => {
 
 //login screen 
 router.post("/login", async (req, res) => {
-   console.log(req.body);
+   //console.log(req.body);
    const { email, password } = req.body;
    if (!email || !password) {
       return res.json({ status:false,message: "Enter the correct values" });
@@ -88,7 +96,7 @@ router.post("/login", async (req, res) => {
       }
       const isPwdMatch= await bcrypt.compare(password,userEmail.password);
       const token= await userEmail.generateAuthToken();
-      console.log(`token is ::: ${token}`);
+      //console.log(`token is ::: ${token}`);
       res.cookie("jwtoken",token,{
          httpOnly:true        
       });
