@@ -6,6 +6,7 @@ import About from './components/About';
 import Login from './components/Login';
 import Contact from './components/Contact';
 import Registration from './components/Registration';
+import Logout from './components/Logout';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/logout" element={<Logout />} />
 
       </Routes>
 

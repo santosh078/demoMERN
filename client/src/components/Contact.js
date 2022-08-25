@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Contact = () => {
     const navigate = useNavigate();
     const [userData, setUserData] = useState({});
-    const callAbout = async () => {
+    const getUserData = async () => {
         try {
             const res = await fetch("/userData", {
                 method: "GET",
@@ -16,8 +16,8 @@ const Contact = () => {
             const data = await res.json();
             setUserData(data);
             if (data.error) {
-                window.alert("user dont have permission to view the page");
-                navigate("/login");
+                // window.alert("user dont have permission to view the page");
+                // navigate("/login");
             }
         } catch (err) {
             console.log(err);
@@ -25,7 +25,7 @@ const Contact = () => {
     }
 
     useEffect(() => {
-        callAbout();
+        getUserData();
     }, []);
     const onDataChange = (evt) => {
         evt.preventDefault();

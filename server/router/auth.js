@@ -100,4 +100,9 @@ router.post("/contact", authentication, async (req, res) => {
       res.status(201).json({status:true,message:saveContact});
    }
 });
+router.get("/logout", (req, res) => {
+      res.clearCookie("jwtoken");
+      res.status(200).json({message:"Logout successful"});
+   
+});
 module.exports = router;

@@ -1,0 +1,22 @@
+{
+  "name": "demomern",
+  "version": "1.0.0",
+  "description": "just a sample project to learn MERN stack with CRUD operation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/santosh078/demoMERN.git"
+  },
+  "author": "Santosh Murmu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/santosh078/demoMERN/issues"
+  },
+  "homepage": "https://github.com/santosh078/demoMERN#readme",
+  "dependencies": {
+    "react-icons": "^4.4.0"
+  }
+}

@@ -18,8 +18,8 @@ const About = () => {
             const data = await res.json();
             setUserData(data);
             if (data.error) {               
-                window.alert("user dont have permission to view the page");    
-                navigate("/login");           
+                // window.alert("user dont have permission to view the page");    
+                // navigate("/login");           
             } 
         } catch (err) {
             console.log(err);
